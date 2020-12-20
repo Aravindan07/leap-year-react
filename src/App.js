@@ -10,7 +10,9 @@ export default function App() {
   };
   const onClickHandler = (inputDate) => {
     let birthYear = Number(inputDate.split("-")[0]);
-    console.log(birthYear);
+    if (birthYear === 0) {
+      return setIsLeap(`Please enter the date`);
+    }
     if ((birthYear % 4 === 0 && birthYear % 100 !== 0) || birthYear % 4 === 0) {
       return setIsLeap(
         `Hey you are born in leap year\n.Feel free to share it on social media.`
@@ -30,6 +32,7 @@ export default function App() {
         type="date"
         value={date}
         onChange={onChangeHandler}
+        required
       />
       <button id="submit-button" onClick={() => onClickHandler(date)}>
         Submit
